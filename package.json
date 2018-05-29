@@ -1,0 +1,32 @@
+{
+  "name": "js-compiler",
+  "version": "0.1.0",
+  "description": "A small js compiler build following the jamesklye tutorial",
+  "main": "tokenizer.js",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "next": "^6.0.3",
+    "react": "^16.4.0",
+    "react-ace": "^6.1.1",
+    "react-dom": "^16.4.0",
+    "react-grid-system": "^4.0.1",
+    "standard": "^11.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "standard tokenizer.js --fix",
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saulflores95/js-compiler.git"
+  },
+  "author": "Saul Flores",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/saulflores95/js-compiler/issues"
+  },
+  "homepage": "https://github.com/saulflores95/js-compiler#readme"
+}
