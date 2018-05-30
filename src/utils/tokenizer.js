@@ -106,18 +106,18 @@ function Token () {
 
 // Main Tokenizer function ----------------------------------------------------
 // ----------------------------------------------------------------------------
-const tokenizer = (input, tabWidth) => {
-  let cursor = 0,
-    line = 1,
-    col = 0,
-    spaceBefore = 0,
-    indentation = 0,
-    tabExpand = new Array((tabWidth || 4)).join(' '),
-    token = new Token(),
-    lastToken = null,
-    list = []
+export const tokenizer = (input, tabWidth) => {
+  let cursor = 0
+  let line = 1
+  let col = 0
+  let spaceBefore = 0
+  let indentation = 0
+  let tabExpand = new Array((tabWidth || 4)).join(' ')
+  let token = new Token()
+  let lastToken = null
+  let list = []
 
-    // Grab the inputs
+  // Grab the inputs
   while (cursor < input.length) {
     // Save the last non-whitespace token
     if (token.type !== 'WHITESPACE') {
@@ -151,15 +151,9 @@ const tokenizer = (input, tabWidth) => {
       // Multi line comments
       // don't ask how this regexp works just pray that it will never fail
     } else if ((m = sub.match('start'))) {
-      console.log('hello')
       token.type = 'START'
-      token.plain = m[0]
+      token.plain = 'start'
       token.value = 'START'
-    } else if ((m = sub.match('start'))) {
-      console.log('bye')
-      token.type = 'END'
-      token.plain = m[0]
-      token.value = 'END'
     } else if ((m = sub.match(multiCommentRegExp))) {
       token.type = 'MULTI_COMMENT'
       token.plain = m[0]
@@ -265,7 +259,6 @@ const tokenizer = (input, tabWidth) => {
     },
 
     get: function () {
-      console.log('posicion actual: ', tokenPos)
       return list[tokenPos]
     },
     all: function () {
@@ -285,5 +278,3 @@ const tokenizer = (input, tabWidth) => {
 
   }
 }
-
-module.export = tokenizer

@@ -15,7 +15,7 @@ export default () => (
           height: 100%;
           margin: 0;
           top: 0;
-          background-color: white;
+          background-color: rgb(234, 234, 234);
           font-family: 'Montserrat', sans-serif;
         }
         html {

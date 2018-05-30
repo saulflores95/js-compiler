@@ -1,9 +1,7 @@
-import {  Col } from 'react-grid-system'
-
 const Button = (props) => (
   <div className='align'>
-      <div className="button">Compile</div>
-      <a href="https://github.com/saulflores95/js-compiler"  target="_blank" className="button gray" >View source</a>
+    <div className='button' onClick={props.handleClick}>Compile</div>
+    <a href='https://github.com/saulflores95/js-compiler' target='_blank' className='button gray' >View source</a>
     <style jsx>{`
       .align {
           display: flex;

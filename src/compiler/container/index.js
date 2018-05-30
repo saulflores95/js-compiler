@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import dynamic from 'next/dynamic'
 import { Container, Row, Col } from 'react-grid-system'
-import tokenizer from '../../utils/tokenizer'
+import { tokenizer, parser } from '../../utils/'
+import { beautify } from 'js-beautify'
 
 const TextEditor = dynamic(import('../components/textEditor'), {
   ssr: false
@@ -13,12 +14,32 @@ const Button = dynamic(import('../components/button'), {
 
 export default class Compiler extends Component {
   state = {
-    input: '',
-    show: false
+    value: '',
+    show: false,
+    traduction: ''
   }
 
   onChange = (value) => {
-    console.log(value)
+    console.log('Current value', value)
+    this.handleInput(value)
+  }
+
+  handleCode = (value) => {
+    this.setState({
+      value
+    })
+  }
+
+  handleInput = () => {
+    console.log(this.state.value);
+    let tokens = tokenizer(this.state.value, 4)
+    console.log(tokens.all())
+    let parse = parser(tokens)
+    let traduction = parse()
+    //beautify(traduction, { indent_size:2 })
+    this.setState({
+      traduction
+    })
   }
 
   render() {
@@ -27,14 +48,14 @@ export default class Compiler extends Component {
         <Container>
           <Row>
             <Col md={6}>
-              <TextEditor onChange={this.onChange} lan='javascript' theme="twilight"/>
+              <TextEditor value={this.state.value} onChange={this.handleCode} lan='javascript' theme="twilight"/>
               </Col>
             <Col md={6}>
-              <TextEditor onChange={null} lan='c_cpp' theme="xcode"/>
+              <TextEditor value={this.state.traduction} onChange={null} lan='c_cpp' theme="xcode"/>
             </Col>
           </Row>
         </Container>
-          <Button />
+          <Button handleClick={this.handleInput}/>
        </div>
     )
   }
