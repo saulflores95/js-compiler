@@ -1,5 +1,6 @@
 let KEYWORDS = [
   'start', 'end',
+  'console', 'log',
   'break',
   'case', 'catch', 'const', 'continue',
   'debugger', 'default', 'delete', 'do',
@@ -270,6 +271,11 @@ export const tokenizer = (input, tabWidth) => {
     lookahead: function () {
       let i = tokenPos
       i++
+      return list[i]
+    },
+    prev: function () {
+      let i = tokenPos
+      i--
       return list[i]
     },
     reset: function () {

@@ -19,6 +19,42 @@ export default class Compiler extends Component {
     traduction: ''
   }
 
+  componentDidMount() {
+    let sampleCode = `start
+  function main() {
+      let b = 0.0
+      for(let i = 0; i < 5; i++) {
+          if(i === 3) {
+              b = 5.5
+          }
+      }
+  }
+
+  function ageGet() {
+      console.log("What is the age of the user")
+      return 13
+  }
+
+  function whatIsName() {
+      console.log("What is the username")
+      return "Saul"
+  }
+
+  function sub() {
+      let a = 50
+      let b = 3
+      while(a > b) {
+          console.log("a")
+          a - b
+      }
+  }
+end
+    `
+    this.setState({
+      value: sampleCode
+    })
+  }
+
   onChange = (value) => {
     console.log('Current value', value)
     this.handleInput(value)
